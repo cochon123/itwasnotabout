@@ -1,0 +1,39 @@
+# Dépendances backend
+moviepy
+numpy
+Pillow
+whisper_timestamped
+google-generativeai
+openai>=1.0.0
+python-dotenv
+## transformers non contraint supprimé (version incompatible pour LLAMA_ATTENTION_CLASSES)
+pydub
+tqdm
+
+descript-audio-codec
+torch
+transformers==4.46.0  # version compatible avec LLAMA_ATTENTION_CLASSES
+librosa
+dacite
+boto3==1.35.36
+s3fs
+torchvision
+torchaudio
+json_repair
+pandas
+pydantic
+vector_quantize_pytorch
+loguru
+pydub
+ruff==0.12.2
+omegaconf
+click
+langid
+jieba
+accelerate>=0.26.0
+httplib
+httplib2
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python

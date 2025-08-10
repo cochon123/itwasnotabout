@@ -1,0 +1,26 @@
+
+
+#Ignore vscode AI rules
+.github/copilot-instructions.md
+
+# Environnements et secrets
+.env
+IWNAenv/
+itwasnotabout/
+venv/
+.venv/
+__pycache__/
+
+# Sorties générées
+output/
+backend/data/generated_story*.md
+backend/data/generated_story*_meta.json
+
+# Notebooks et checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+backend/scripts/client_secrets.json
+backend/libs/higgs-audio

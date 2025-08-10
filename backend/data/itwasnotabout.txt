@@ -1,0 +1,27 @@
+analyser le texte des short
+	speech to text chaque short
+	identifier les paternes
+
+creer 50 histoires
+tts chaque histoire ()
+creer un dataset de video satisfaisante
+monter les vidéos. en utilisant un simple script.
+
+
+
+
+
+
+
+configuration n8n.
+domaine : n8n.tcpi0117.odns.fr
+adresse IP : 109.234.164.51 (après avoir sécurisé avec ssl)
+chemin du repertoire n8n sur le serveur : n8n_app
+chemin du repertoire de l'application NODE.JS n8n sur le serveur : n8n_app_js
+password d'admin : *iRLJ.}N+MCj-6b
+clé api open ai : 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
+
+
+
+
+grumble tales
