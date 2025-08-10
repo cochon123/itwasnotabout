@@ -25,3 +25,4 @@ Thumbs.db
 backend/scripts/client_secrets.json
 backend/libs/higgs-audio
 frontend/node_modules
+backend/scripts/client_secret.json
