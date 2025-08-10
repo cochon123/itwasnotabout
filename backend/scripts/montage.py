@@ -85,7 +85,7 @@ def create_random_clip(audio_path, video_list_path, output_path):
                 # For the last clip, handle differently
                 if current_duration + clip_duration >= audio_duration and remaining > 0:
                     # Take needed portion from beginning
-                    subclip = clip.subclip(0, remaining)
+                    subclip = clip.subclipped(0, remaining)
                     clips.append(subclip)
                     current_duration += remaining
                     print(f"Added final clip: {video_file} ({remaining:.2f}s)")

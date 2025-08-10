@@ -15,7 +15,7 @@ import shutil
 import re
 from moviepy import AudioFileClip
 from tqdm import tqdm
-from moviepy.editor import concatenate_audioclips
+from moviepy import concatenate_audioclips
 
 
 def synthesize_tts(input_md_path: str, output_wav_path: str):

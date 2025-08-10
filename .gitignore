@@ -24,3 +24,4 @@ backend/data/generated_story*_meta.json
 Thumbs.db
 backend/scripts/client_secrets.json
 backend/libs/higgs-audio
+frontend/node_modules

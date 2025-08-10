@@ -1,0 +1,58 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install frontend deps",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd frontend && npm install"
+			],
+			"problemMatcher": [
+				"$eslint - stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Start frontend (dev)",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd frontend && npm run dev"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Install vite react plugin",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd frontend && npm i -D @vitejs/plugin-react"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Restart dev client",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd frontend && pkill -f vite || true; npm run dev:client"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Install UI deps",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"cd frontend && npm i three @react-three/fiber @react-three/drei framer-motion"
+			],
+			"group": "build"
+		}
+	]
+}
