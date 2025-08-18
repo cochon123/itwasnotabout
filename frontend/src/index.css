@@ -3,3 +3,27 @@
 @tailwind utilities;
 
 html, body, #root { height: 100%; }
+
+/* Light mode variables */
+:root {
+  --bg-primary: #f3f4f6;
+  --bg-secondary: #e5e7eb;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-color: #d1d5db;
+}
+
+/* Dark mode variables */
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+}
+
+/* Apply theme variables */
+html, body, #root {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}

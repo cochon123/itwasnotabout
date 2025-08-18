@@ -1,39 +1,36 @@
-# Dépendances backend
-moviepy
-numpy
-Pillow
-whisper_timestamped
-google-generativeai
+# Backend Dependencies
+moviepy>=1.0.3
+numpy>=1.21.0
+Pillow>=8.3.2
+whisper-timestamped>=1.14.0
+google-generativeai>=0.7.0
 openai>=1.0.0
-python-dotenv
-## transformers non contraint supprimé (version incompatible pour LLAMA_ATTENTION_CLASSES)
-pydub
-tqdm
-
-descript-audio-codec
-torch
-transformers==4.46.0  # version compatible avec LLAMA_ATTENTION_CLASSES
-librosa
-dacite
-boto3==1.35.36
-s3fs
-torchvision
-torchaudio
-json_repair
-pandas
-pydantic
-vector_quantize_pytorch
-loguru
-pydub
-ruff==0.12.2
-omegaconf
-click
-langid
-jieba
+python-dotenv>=0.19.0
+pydub>=0.25.1
+tqdm>=4.62.0
+librosa>=0.9.1
+dacite>=1.6.0
+boto3>=1.35.36
+s3fs>=2023.1.0
+json-repair>=0.10.0
+pandas>=1.3.0
+pydantic>=2.0.0
+loguru>=0.5.3
+ruff>=0.12.2
+omegaconf>=2.1.0
+click>=8.0.0
+langid>=1.1.6
+jieba>=0.42.1
 accelerate>=0.26.0
-httplib
-httplib2
-google-auth
-google-auth-oauthlib
-google-auth-httplib2
-google-api-python
+google-auth>=2.0.0
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.0
+google-api-python-client>=2.0.0
+
+# Conditional dependencies (install separately if needed)
+# torch>=2.0.0
+# torchvision>=0.15.0
+# torchaudio>=2.0.0
+# transformers>=4.46.0
+# descript-audio-codec>=0.1.0
+# vector_quantize_pytorch>=0.1.0
