@@ -6,12 +6,12 @@ This project, "It Was Not About" (IWNA), is an AI-powered YouTube Shorts generat
 
 The project is structured as a full-stack application:
 
-- **Backend (Python):** Handles the core content generation pipeline, including story generation via AI (Google Gemini), Text-to-Speech (Higgs Audio v2), video editing (MoviePy), and subtitle generation (Whisper Timestamped).
+- **Backend (Python):** Handles the core content generation pipeline, including story generation via AI (Google Gemini), Text-to-Speech (VibeVoice), video editing (MoviePy), and subtitle generation (Whisper Timestamped).
 - **Frontend (Web - React/Vite):** Provides a real-time, interactive web interface to monitor the generation process, view media outputs, and manage API keys.
 
 ## Key Technologies
 
-- **Backend:** Python 3.10+, MoviePy, Whisper Timestamped, Google Generative AI (`gemini-2.5-flash`), Higgs Audio v2, `python-dotenv`.
+- **Backend:** Python 3.10+, MoviePy, Whisper Timestamped, Google Generative AI (`gemini-2.5-flash`), VibeVoice, `python-dotenv`.
 - **Frontend:** React, Vite, Tailwind CSS, Three.js (for 3D elements).
 - **Assets:** Requires video clips in `assets/video` and a font file (`assets/fonts/impact.ttf`) for subtitles.
 
@@ -21,7 +21,7 @@ The project is structured as a full-stack application:
 
 1.  Python 3.10+ installed.
 2.  Node.js and npm installed for the frontend.
-3.  API keys for Google (Gemini) and OpenAI. Copy `.env.example` to `.env` and fill in the keys.
+3.  API key for Google (Gemini). Copy `.env.example` to `.env` and fill in the key.
 
 ### Backend Setup and Execution
 

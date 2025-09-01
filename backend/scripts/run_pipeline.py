@@ -17,21 +17,25 @@ def main():
     os.makedirs(audio_dir, exist_ok=True)
     os.makedirs(video_dir, exist_ok=True)
 
-    # Étape 0 : Génération de l'histoire
-    print("=== Étape 0: Génération de l'histoire ===")
-    gen_script = os.path.join(script_dir, 'generate_story.py')
-    input_sample = os.path.join(data_dir, 'sample.md')
-    generated_md = os.path.join(data_dir, 'generated_story.md')
-    subprocess.run(['python', gen_script, input_sample, generated_md, '--model', 'gemini-2.5-flash'], check=True)
+    # Étape 0 : Récupération des histoires depuis Reddit
+    print("=== Étape 0: Récupération des histoires depuis Reddit ===")
+    reddit_script = os.path.join(script_dir, 'fetch_reddit_stories.py')
+    reddit_stories_md = os.path.join(data_dir, 'reddit_stories.md')
+    # Try to fetch stories from Reddit, but continue with sample stories if it fails
+    try:
+        # Fetch 1 story from r/stories
+        subprocess.run(['python', reddit_script, reddit_stories_md, '--limit', '1'], check=True)
+        generated_md = reddit_stories_md
+    except subprocess.CalledProcessError as e:
+        print(f"Warning: Could not fetch stories from Reddit. Using sample stories instead. Error: {e}")
+        generated_md = os.path.join(data_dir, 'sample.md')
 
     # Étape 1 : Synthèse vocale
     print("=== Étape 1: Synthèse vocale (TTS) ===")
-    tts_script = os.path.join(script_dir, 'texttospeech.py')
+    tts_script = os.path.join(script_dir, 'texttospeech_vibevoice.py')
     sample_md = generated_md  # Utiliser l'histoire générée
     output_audio = os.path.join(audio_dir, 'story_complet.wav')
-    # Utiliser Higgs par défaut; basculer sur OpenAI via variable d'env IWNA_TTS_BACKEND
-    tts_backend = os.getenv('IWNA_TTS_BACKEND', 'higgs')
-    subprocess.run(['python', tts_script, sample_md, output_audio, '--backend', tts_backend], check=True)
+    subprocess.run(['python', tts_script, sample_md, output_audio, '--speaker', 'Alice'], check=True)
 
     # Étape 2 : Montage vidéo
     print("=== Étape 2: Montage vidéo ===")

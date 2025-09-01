@@ -27,3 +27,6 @@ backend/libs/higgs-audio
 frontend/node_modules
 /backend/scripts/client_secret.json
 backend/scripts/token.json
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

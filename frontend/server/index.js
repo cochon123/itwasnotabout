@@ -198,11 +198,11 @@ app.post('/api/run', async (req, res) => {
     setStepStatus(0, 'success'); send('step', { id: 0, status: 'success' })
     pushEvent({ kind: 'success', stepId: 0, text: `Histoire générée (${Math.round((Date.now()-stepStart[0])/1000)}s)` })
 
-    // Step 1 texttospeech.py
+    // Step 1 texttospeech_vibevoice.py
     setStepStatus(1, 'running'); send('step', { id: 1, status: 'running' })
     pushEvent({ kind: 'step', stepId: 1, text: 'Synthèse vocale — démarrée' })
     stepStart[1] = Date.now()
-    await runPy(['texttospeech.py'], scriptsDir)
+    await runPy(['texttospeech_vibevoice.py', '--speaker', 'Alice'], scriptsDir)
     setStepStatus(1, 'success'); send('step', { id: 1, status: 'success' })
     pushEvent({ kind: 'success', stepId: 1, text: `Voix synthétisée (${Math.round((Date.now()-stepStart[1])/1000)}s)` })
 
@@ -232,6 +232,61 @@ app.post('/api/run', async (req, res) => {
     running = false
     paused = false
     pushEvent({ kind: 'done', text: 'Pipeline terminé' })
+  }
+})
+
+// Run individual step
+app.post('/api/run-step/:stepId', async (req, res) => {
+  const stepId = parseInt(req.params.stepId)
+  if (isNaN(stepId) || stepId < 0 || stepId >= steps.length) {
+    return res.status(400).json({ error: 'ID d\'étape invalide' })
+  }
+
+  if (running) return res.status(409).json({ error: 'Pipeline déjà en cours' })
+
+  const step = steps[stepId]
+  if (step.status === 'running' || step.status === 'success') {
+    return res.status(409).json({ error: 'Étape déjà en cours ou terminée' })
+  }
+
+  running = true
+  paused = false
+
+  res.json({ ok: true })
+
+  try {
+    setStepStatus(stepId, 'running')
+    
+    // Define step commands
+    const stepCommands = {
+      0: ['generate_story.py'],
+      1: ['texttospeech_vibevoice.py', '--speaker', 'Alice'],
+      2: ['montage.py'],
+      3: ['add_caption.py']
+    }
+
+    const stepNames = {
+      0: 'Génération de l’histoire',
+      1: 'Synthèse vocale',
+      2: 'Montage vidéo',
+      3: 'Génération des sous-titres'
+    }
+
+    pushEvent({ kind: 'step', stepId, text: `${stepNames[stepId]} — démarrée` })
+    const startTime = Date.now()
+    
+    await runPy(stepCommands[stepId], scriptsDir)
+    
+    setStepStatus(stepId, 'success')
+    pushEvent({ kind: 'success', stepId, text: `${stepNames[stepId]} terminée (${Math.round((Date.now()-startTime)/1000)}s)` })
+  } catch (err) {
+    console.error(err)
+    setStepStatus(stepId, 'error')
+    pushEvent({ kind: 'error', stepId, text: `Échec à l’étape “${step.name || 'inconnue'}”` })
+  } finally {
+    running = false
+    paused = false
+    pushEvent({ kind: 'done', text: 'Étape terminée' })
   }
 })
 

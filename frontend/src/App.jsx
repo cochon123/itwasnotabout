@@ -233,8 +233,15 @@ export default function App() {
                   <button 
                     disabled={running || s.status === 'running' || s.status === 'success'}
                     onClick={async () => {
-                      // TODO: Implement individual step execution
-                      console.log(`Execute step: ${s.id}`)
+                      try {
+                        const response = await fetch(`/api/run-step/${s.id}`, { method: 'POST' })
+                        const result = await response.json()
+                        if (!response.ok) {
+                          console.error('Failed to execute step:', result.error)
+                        }
+                      } catch (err) {
+                        console.error('Error executing step:', err)
+                      }
                     }}
                     className={`text-xs px-2 py-1 rounded transition-colors ${
                       running || s.status === 'running' || s.status === 'success'
